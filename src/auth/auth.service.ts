@@ -57,8 +57,8 @@ export class AuthService {
 
       // Devolvemos el usuario y generamos su token
       return {
-        ...user,
-        password: this.getJwtToken(user)
+        email: user.email,
+        token: this.getJwtToken({ id: user.id })
       }
 
     } catch (error) {

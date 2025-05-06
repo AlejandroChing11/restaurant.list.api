@@ -2,7 +2,7 @@
  * Entidad que representa una transacción de búsqueda de restaurantes
  * Almacena los parámetros de búsqueda y la relación con el usuario que la realizó
  */
-import { User } from "src/auth/entities/user.entity";
+import { User } from '../../auth/entities/user.entity';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity({ name: "transaction" })

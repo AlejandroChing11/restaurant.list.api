@@ -2,7 +2,7 @@
  * Entidad que representa a un usuario en el sistema
  * Almacena sus datos personales, credenciales y relación con sus transacciones
  */
-import { Transaction } from 'src/transaction/entities/transaction.entity';
+import { Transaction } from '../../transaction/entities/transaction.entity';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
 @Entity()

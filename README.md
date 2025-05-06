@@ -96,3 +96,110 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+
+# Restaurant List API
+
+API para búsqueda de restaurantes utilizando geolocalización.
+
+## Descripción
+
+Esta API permite a los usuarios autenticados buscar restaurantes cercanos a una ubicación específica, ya sea mediante texto (dirección, ciudad, etc.) o coordenadas geográficas directas. El sistema registra las búsquedas realizadas y permite consultar el historial.
+
+## Funcionalidades principales
+
+- Autenticación de usuarios (registro, login, logout)
+- Búsqueda de restaurantes por dirección, ciudad o coordenadas
+- Definición de radio de búsqueda en metros
+- Historial de búsquedas realizadas
+
+## Tecnologías
+
+- NestJS
+- PostgreSQL
+- TypeORM
+- JWT para autenticación
+- API externa de geolocalización (Geoapify)
+
+## Instalación
+
+```bash
+$ yarn install
+```
+
+## Configuración
+
+1. Crea un archivo `.env` en la raíz del proyecto con la siguiente información:
+
+```
+DB_HOST=localhost
+DB_USERNAME=postgres
+DB_PASSWORD=postgres
+DB_NAME=restaurant_db
+GEOGRAPHY_API_KEY=your_geoapify_api_key
+JWT_SECRET=your_jwt_secret
+```
+
+2. Asegúrate de tener PostgreSQL instalado y corriendo.
+
+## Ejecución
+
+```bash
+# desarrollo
+$ yarn start:dev
+
+# producción
+$ yarn start:prod
+```
+
+## Pruebas Automatizadas
+
+Este proyecto cuenta con pruebas automatizadas unitarias y end-to-end para asegurar la calidad del código y la funcionalidad.
+
+### Tipos de pruebas implementadas
+
+1. **Pruebas Unitarias**: Verifican el correcto funcionamiento de componentes individuales (servicios, controladores) de manera aislada.
+2. **Pruebas End-to-End (E2E)**: Prueban la aplicación completa simulando la interacción de un usuario real.
+
+### Ejecución de pruebas
+
+Para ejecutar las pruebas unitarias:
+
+```bash
+# ejecutar todas las pruebas unitarias
+$ yarn test
+
+# ejecutar pruebas unitarias con modo observador (útil durante desarrollo)
+$ yarn test:watch
+
+# ejecutar pruebas unitarias con cobertura
+$ yarn test:cov
+```
+
+Para ejecutar las pruebas end-to-end:
+
+```bash
+# ejecutar pruebas e2e
+$ yarn test:e2e
+```
+
+### Estructura de las pruebas
+
+- Las pruebas unitarias se encuentran en archivos `.spec.ts` junto al código que prueban.
+- Las pruebas e2e están en la carpeta `/test`.
+
+### Cobertura de pruebas
+
+Las pruebas implementadas cubren:
+
+- **AuthService**: Registro de usuarios, login y logout.
+- **TransactionService**: Búsqueda de restaurantes y consulta de historial.
+- **Controladores**: Validación de parámetros y manejo de respuestas.
+- **Flujos E2E**: Registro, login, búsqueda de restaurantes y consulta de historial.
+
+## API Endpoints
+
+La documentación detallada de la API está disponible en Swagger en la ruta `/api/docs` cuando el servidor está en ejecución.
+
+## Licencia
+
+Este proyecto está bajo licencia [MIT](LICENSE).
