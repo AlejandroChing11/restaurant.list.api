@@ -71,12 +71,18 @@ export class AuthService {
       throw new BadRequestException('Invalid password');
     }
 
+    if (!user.isActive) {
+
+      await this.userRepository.update(user.id, { isActive: true });
+
+    }
+
     return {
       token: this.getJwtToken({ id: user.id })
     };
   }
 
-  async logOut(user: User): Promise<void> {
+  async logOut(user: User): Promise<{ message: string }> {
     const { id } = user;
 
     const userExists = await this.userRepository.findOne({
@@ -89,6 +95,10 @@ export class AuthService {
     }
 
     await this.userRepository.update(id, { isActive: false });
+
+    return {
+      message: 'User logged out successfully'
+    }
   }
 
   private handleDBError(error: any): never {

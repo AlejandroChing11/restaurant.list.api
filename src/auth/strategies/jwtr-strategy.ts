@@ -31,11 +31,11 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     const user = await this.userRepository.findOneBy({ id });
 
     if (!user) {
-      throw new UnauthorizedException('Usuario no autenticado');
+      throw new UnauthorizedException('User not autenticated');
     }
 
     if (!user.isActive) {
-      throw new UnauthorizedException('Usuario no activo, comuniquese con proveedor');
+      throw new UnauthorizedException('User is Log Out, please login');
     }
 
     return user;

@@ -3,6 +3,10 @@ import { AuthService } from './auth.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { ApiResponse } from '@nestjs/swagger';
 import { LoginUserDto } from './dto/login-user.dto';
+import { GetUser } from './decorators/get-user.decorator';
+import { User } from './entities/user.entity';
+import { Auth } from './decorators/user.decorator';
+import { ValidRoles } from './interfaces';
 
 @Controller('auth')
 export class AuthController {
@@ -26,6 +30,14 @@ export class AuthController {
   @Post('login')
   login(@Body() loginUsuarioDto: LoginUserDto): Promise<{ token: string }> {
     return this.authService.login(loginUsuarioDto);
+  }
+
+  @Auth(ValidRoles.user)
+  @Get('logout')
+  logout(
+    @GetUser() user: User
+  ) {
+    return this.authService.logOut(user);
   }
 
 
