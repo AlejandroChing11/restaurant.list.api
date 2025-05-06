@@ -2,12 +2,32 @@ import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
-  @Column()
+  @Column('text')
   name: string;
 
-  @Column()
+  @Column('text', {
+    unique: true,
+  })
   email: string;
+
+  @Column('text', {
+    select: false,
+  })
+  password: string;
+
+  @Column('boolean', {
+    default: true,
+  })
+  isActive: boolean;
+
+  @Column('text', {
+    array: true,
+    default: ['user'],
+  })
+  roles: string[];
+
+
 }
