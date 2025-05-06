@@ -1,3 +1,7 @@
+/**
+ * Servicio que gestiona la búsqueda de restaurantes y el registro de transacciones
+ * Se conecta con APIs externas para geolocalización y búsqueda de lugares
+ */
 import { Injectable } from '@nestjs/common';
 import { CreateTransactionDto } from './dto/create-transaction.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -14,10 +18,16 @@ export class TransactionService {
     private readonly transactionRepository: Repository<Transaction>,
   ){}
 
+  /**
+   * Crea una transacción y busca restaurantes según término de búsqueda
+   * @param createTransactionDto Datos de la búsqueda (término y radio opcional)
+   * @param user Usuario que realiza la búsqueda
+   * @returns Listado de restaurantes encontrados con metadatos
+   */
   async create(createTransactionDto: CreateTransactionDto, user: User) {
 
     try {
-
+      // Creamos y guardamos el registro de la transacción
       const transaction = this.transactionRepository.create({
         ...createTransactionDto,
         user: user
@@ -26,14 +36,16 @@ export class TransactionService {
 
       let lat, lon;
 
+      // Comprobamos si el término de búsqueda es directamente coordenadas
       const coordsPattern = /^(-?\d+(\.\d+)?),\s*(-?\d+(\.\d+)?)$/;
       const coordsMatch = createTransactionDto.searchTerm.match(coordsPattern);
 
       if (coordsMatch) {
+        // Si el usuario ingresó coordenadas directamente
         lat = parseFloat(coordsMatch[1]);
         lon = parseFloat(coordsMatch[3]);
       } else {
-
+        // Si el usuario ingresó una dirección o lugar, convertimos a coordenadas
         const geocodeUrl = `https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(createTransactionDto.searchTerm)}&apiKey=${process.env.GEOGRAPHY_API_KEY}`;
         const geocodeResponse = await axios.get(geocodeUrl);
 
@@ -44,14 +56,17 @@ export class TransactionService {
         const location = geocodeResponse.data.features[0].geometry.coordinates;
         lon = location[0];
         lat = location[1];
-
       }
 
+      // Establecemos el radio de búsqueda (por defecto 1000m si no se especificó)
       const radius = createTransactionDto.radius || 1000;
+
+      // Realizamos la búsqueda de restaurantes cercanos
       const placesUrl = `https://api.geoapify.com/v2/places?categories=catering.restaurant&filter=circle:${lon},${lat},${radius}&limit=20&apiKey=${process.env.GEOGRAPHY_API_KEY}`;
       
       const restaurantsResponse = await axios.get(placesUrl);
 
+      // Transformamos la respuesta para tener un formato más limpio
       const restaurants = restaurantsResponse.data.features.map(place => {
         const properties = place.properties;
         return {
@@ -82,6 +97,7 @@ export class TransactionService {
         };
       });
 
+      // Devolvemos el resultado estructurado
       return {
         searchLocation: {
           query: createTransactionDto.searchTerm,
@@ -98,14 +114,17 @@ export class TransactionService {
       console.error('Error buscando restaurantes:', error);
       throw new Error('Error al buscar restaurantes: ' + error.message);
     }
-    
-
   }
 
+  /**
+   * Obtiene el historial de búsquedas de un usuario
+   * @param user Usuario del que se quiere obtener el historial
+   * @returns Listado de transacciones del usuario
+   */
   async findAll(user: User) {
 
     try {
-
+      // Buscamos todas las transacciones del usuario
       const transactions = await this.transactionRepository.find({
         where: {
           user: {
@@ -124,7 +143,5 @@ export class TransactionService {
       console.error('Error buscando transacciones:', error);
       throw new Error('Error al buscar transacciones: ' + error.message);
     }
-
   }
-
 }

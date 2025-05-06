@@ -1,3 +1,7 @@
+/**
+ * Controlador para gestionar las operaciones de autenticación de usuarios
+ * Maneja endpoints para registro, login y logout de usuarios
+ */
 import { Controller, Get, Post, Body } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -12,6 +16,11 @@ import { ValidRoles } from './interfaces';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
+  /**
+   * Endpoint para crear un nuevo usuario en el sistema
+   * @param createUserDto Datos necesarios para crear un usuario
+   * @returns Usuario creado y su token de autenticación
+   */
   @ApiResponse({ status: 201, description: 'User created successfully.' })
   @ApiResponse({ status: 400, description: 'Bad Request.' })
   @Post('register')
@@ -19,6 +28,11 @@ export class AuthController {
     return this.authService.create(createUserDto);
   }
 
+  /**
+   * Endpoint para autenticar a un usuario en el sistema
+   * @param loginUsuarioDto Credenciales de inicio de sesión
+   * @returns Token JWT para autenticación
+   */
   @ApiResponse({
     status: 201,
     description: 'Login successful',
@@ -32,6 +46,12 @@ export class AuthController {
     return this.authService.login(loginUsuarioDto);
   }
 
+  /**
+   * Endpoint para cerrar la sesión de un usuario
+   * Requiere autenticación con rol de usuario
+   * @param user Usuario actual obtenido del token JWT
+   * @returns Mensaje de confirmación de cierre de sesión
+   */
   @Auth(ValidRoles.user)
   @Get('logout')
   logout(
@@ -39,7 +59,4 @@ export class AuthController {
   ) {
     return this.authService.logOut(user);
   }
-
-
-
 }
