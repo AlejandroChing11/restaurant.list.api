@@ -1,13 +1,16 @@
 import { BadRequestException, Injectable, InternalServerErrorException } from '@nestjs/common';
+import { Repository } from 'typeorm';
+
+import { InjectRepository } from '@nestjs/typeorm';
+
+import { JwtPayload } from './interfaces';
+import { User } from './entities/user.entity';
+import { LoginUserDto } from './dto/login-user.dto';
 import { CreateUserDto } from './dto/create-user.dto';
 
-import * as bcrypt from 'bcrypt';
-import { InjectRepository } from '@nestjs/typeorm';
-import { User } from './entities/user.entity';
-import { Repository } from 'typeorm';
 import { JwtService } from '@nestjs/jwt';
-import { JwtPayload } from './interfaces';
-import { LoginUserDto } from './dto/login-user.dto';
+
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AuthService {
@@ -71,6 +74,21 @@ export class AuthService {
     return {
       token: this.getJwtToken({ id: user.id })
     };
+  }
+
+  async logOut(user: User): Promise<void> {
+    const { id } = user;
+
+    const userExists = await this.userRepository.findOne({
+      where: { id },
+      select: { id: true }
+    })
+
+    if (!userExists) {
+      throw new BadRequestException('User not found');
+    }
+
+    await this.userRepository.update(id, { isActive: false });
   }
 
   private handleDBError(error: any): never {

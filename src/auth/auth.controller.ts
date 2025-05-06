@@ -1,7 +1,6 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
 import { ApiResponse } from '@nestjs/swagger';
 import { LoginUserDto } from './dto/login-user.dto';
 
@@ -28,5 +27,7 @@ export class AuthController {
   login(@Body() loginUsuarioDto: LoginUserDto): Promise<{ token: string }> {
     return this.authService.login(loginUsuarioDto);
   }
+
+
 
 }

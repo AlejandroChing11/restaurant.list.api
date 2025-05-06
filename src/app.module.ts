@@ -8,6 +8,7 @@ import { User } from './auth/entities/user.entity';
 
 import { ConfigModule } from '@nestjs/config';
 import { join } from 'path';
+import { TransactionModule } from './transaction/transaction.module';
 
 @Module({
   imports: [
@@ -27,7 +28,9 @@ import { join } from 'path';
     }),
     TypeOrmModule.forFeature([User]),
 
-    AuthModule
+    AuthModule,
+
+    TransactionModule
 
   ],
   controllers: [AppController],

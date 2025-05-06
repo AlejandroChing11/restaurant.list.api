@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Transaction } from 'src/transaction/entities/transaction.entity';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
 @Entity()
 export class User {
@@ -28,6 +29,12 @@ export class User {
     default: ['user'],
   })
   roles: string[];
+
+  @OneToMany(
+    () => Transaction,
+    transaction => transaction.user,
+  )
+  transactions: Transaction[];
 
 
 }
