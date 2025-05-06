@@ -24,6 +24,15 @@ export class AuthService {
 
       const { password, ...userData } = createAuthDto;
 
+      const userExists = await this.userRepository.findOne({
+        where: { email: userData.email },
+        select: { email: true }
+      })
+
+      if (userExists) {
+        throw new BadRequestException('User already exists'); //TODO: create custom exception
+      }
+
       const user = this.userRepository.create({
         ...userData,
         password: bcrypt.hashSync(password, 10)
@@ -66,9 +75,9 @@ export class AuthService {
 
   private handleDBError(error: any): never {
     if (error.code === '23505') {
-      throw new InternalServerErrorException('Usuario ya existe');
+      throw new InternalServerErrorException('User already exists');
     }
-    throw new BadRequestException({ message: 'Error en la base de datos', error: error.message });
+    throw new BadRequestException({ message: 'Database error', error: error.message });
   }
 
   private getJwtToken(payload: JwtPayload) {

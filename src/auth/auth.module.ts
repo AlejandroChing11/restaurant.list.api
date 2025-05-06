@@ -29,6 +29,7 @@ import { User } from './entities/user.entity';
         }
       }
     }),
-  ]
+  ],
+  exports: [JwtStrategy, PassportModule, TypeOrmModule, JwtModule]
 })
 export class AuthModule {}

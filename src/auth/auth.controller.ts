@@ -3,6 +3,7 @@ import { AuthService } from './auth.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { ApiResponse } from '@nestjs/swagger';
+import { LoginUserDto } from './dto/login-user.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -13,6 +14,19 @@ export class AuthController {
   @Post('register')
   create(@Body() createUserDto: CreateUserDto) {
     return this.authService.create(createUserDto);
+  }
+
+  @ApiResponse({
+    status: 201,
+    description: 'Login successful',
+  })
+  @ApiResponse({
+    status: 403,
+    description: 'Token expired',
+  })
+  @Post('login')
+  login(@Body() loginUsuarioDto: LoginUserDto): Promise<{ token: string }> {
+    return this.authService.login(loginUsuarioDto);
   }
 
 }
