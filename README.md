@@ -1,205 +1,168 @@
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
+  <img src="https://nestjs.com/img/logo-small.svg" width="120" alt="NestJS Logo" />
 </p>
-
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
-
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Project setup
-
-```bash
-$ yarn install
-```
-
-## Compile and run the project
-
-```bash
-# development
-$ yarn run start
-
-# watch mode
-$ yarn run start:dev
-
-# production mode
-$ yarn run start:prod
-```
-
-## Run tests
-
-```bash
-# unit tests
-$ yarn run test
-
-# e2e tests
-$ yarn run test:e2e
-
-# test coverage
-$ yarn run test:cov
-```
-
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
-```bash
-$ yarn install -g @nestjs/mau
-$ mau deploy
-```
-
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
-
-## Resources
-
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
 
 # Restaurant List API
 
-API para búsqueda de restaurantes utilizando geolocalización.
+**API para búsqueda de restaurantes utilizando geolocalización.**
 
-## Descripción
+---
 
-Esta API permite a los usuarios autenticados buscar restaurantes cercanos a una ubicación específica, ya sea mediante texto (dirección, ciudad, etc.) o coordenadas geográficas directas. El sistema registra las búsquedas realizadas y permite consultar el historial.
+## Tabla de Contenidos
 
-## Funcionalidades principales
+- [Descripción General](#descripción-general)
+- [Características Principales](#características-principales)
+- [Stack Tecnológico](#stack-tecnológico)
+- [Estructura y Estilo del Código](#estructura-y-estilo-del-código)
+- [Instalación y Configuración](#instalación-y-configuración)
+- [Ejecución Local y Docker](#ejecución-local-y-docker)
+- [Pruebas Automatizadas](#pruebas-automatizadas)
+- [Documentación de la API](#documentación-de-la-api)
+- [Notas y Buenas Prácticas](#notas-y-buenas-prácticas)
+- [Licencia](#licencia)
 
-- Autenticación de usuarios (registro, login, logout)
-- Búsqueda de restaurantes por dirección, ciudad o coordenadas
-- Definición de radio de búsqueda en metros
-- Historial de búsquedas realizadas
+---
 
-## Tecnologías
+## Descripción General
 
-- NestJS
-- PostgreSQL
-- TypeORM
-- JWT para autenticación
-- API externa de geolocalización (Geoapify)
+Esta API permite a los usuarios autenticados buscar restaurantes cercanos a una ubicación específica, ya sea mediante texto (dirección, ciudad, etc.) o coordenadas geográficas directas. El sistema registra las búsquedas realizadas y permite consultar el historial de cada usuario.
 
-## Instalación
+El proyecto está desarrollado con **NestJS** y sigue estándares internacionales de desarrollo backend, priorizando la claridad, mantenibilidad y escalabilidad.
+
+---
+
+## Características Principales
+
+- **Autenticación JWT**: Registro, login y logout de usuarios.
+- **Búsqueda de restaurantes**: Por dirección, ciudad o coordenadas, con radio configurable.
+- **Historial de búsquedas**: Consulta de búsquedas previas por usuario.
+- **Integración con API externa**: Uso de Geoapify para geolocalización.
+- **Persistencia robusta**: Base de datos PostgreSQL gestionada con TypeORM.
+- **Documentación interactiva**: Swagger disponible para explorar y probar la API.
+
+---
+
+## Stack Tecnológico
+
+- **Node.js** (v23)
+- **NestJS** (TypeScript)
+- **PostgreSQL** (v14+)
+- **TypeORM**
+- **JWT** para autenticación
+- **Geoapify API** para geolocalización
+- **Docker & Docker Compose** para despliegue y entorno reproducible
+
+---
+
+## Estructura y Estilo del Código
+
+- **Inglés como idioma base**: Todo el código, nombres de variables, funciones y clases están en inglés, siguiendo el estándar global de la industria para facilitar la colaboración internacional y la mantenibilidad.
+- **Comentarios estratégicos**: Los comentarios se han utilizado exclusivamente para explicar la lógica de funciones, controladores, entidades, helpers y estrategias, facilitando la comprensión rápida del flujo y propósito de cada componente.
+- **Arquitectura modular**: Separación clara de responsabilidades en módulos, servicios, controladores y entidades.
+
+---
+
+## Instalación y Configuración
+
+### 1. Clona el repositorio
 
 ```bash
-$ yarn install
+git clone https://github.com/AlejandroChing11/restaurant.list.api
+cd restaurant.list.api
 ```
 
-## Configuración
+### 2. Variables de entorno
 
-1. Crea un archivo `.env` en la raíz del proyecto con la siguiente información:
+Crea un archivo `.env` en la raíz del proyecto con el siguiente contenido:
 
-```
-DB_HOST=localhost
-DB_USERNAME=postgres
+```env
+DB_NAME=restaurantapi
 DB_PASSWORD=postgres
-DB_NAME=restaurant_db
-GEOGRAPHY_API_KEY=your_geoapify_api_key
 JWT_SECRET=your_jwt_secret
+API_KEY=your_geoapify_api_key (En archivo de documentacion esta la api key utilizada)
 ```
 
-2. Asegúrate de tener PostgreSQL instalado y corriendo.
+> **Nota:** Puedes solicitar una API Key gratuita en [Geoapify](https://www.geoapify.com/).
 
-## Ejecución
+---
 
-```bash
-# desarrollo
-$ yarn start:dev
+## Ejecución Local y Docker
 
-# producción
-$ yarn start:prod
-```
+### Opción 1: Ejecución con Docker (recomendado)
+
+1. **Construye e inicia los servicios:**
+   ```bash
+   docker-compose up -d
+   ```
+2. **Accede a la API:**  
+   http://localhost:3000
+
+3. **Documentación Swagger:**  
+   http://localhost:3000/api
+
+4. **Detén los servicios:**
+   ```bash
+   docker-compose down
+   ```
+
+### Opción 2: Ejecución local (sin Docker)
+
+1. Instala dependencias:
+   ```bash
+   yarn install
+   ```
+2. Asegúrate de tener PostgreSQL corriendo y configurado según tu `.env`.
+3. Ejecuta la aplicación:
+   ```bash
+   yarn start:dev
+   ```
+
+---
 
 ## Pruebas Automatizadas
 
-Este proyecto cuenta con pruebas automatizadas unitarias y end-to-end para asegurar la calidad del código y la funcionalidad.
+El proyecto incluye pruebas unitarias y end-to-end (E2E):
 
-### Tipos de pruebas implementadas
+- **Unitarias:**  
+  ```bash
+  yarn test
+  ```
+- **Cobertura:**  
+  ```bash
+  yarn test:cov
+  ```
+- **End-to-End:**  
+  ```bash
+  yarn test:e2e
+  ```
 
-1. **Pruebas Unitarias**: Verifican el correcto funcionamiento de componentes individuales (servicios, controladores) de manera aislada.
-2. **Pruebas End-to-End (E2E)**: Prueban la aplicación completa simulando la interacción de un usuario real.
+Las pruebas cubren autenticación, lógica de negocio y flujos completos de usuario.
 
-### Ejecución de pruebas
+---
 
-Para ejecutar las pruebas unitarias:
+## Documentación de la API
 
-```bash
-# ejecutar todas las pruebas unitarias
-$ yarn test
+- **Swagger UI:**  
+  Accesible en [http://localhost:3000/api](http://localhost:3000/api) una vez la API esté corriendo.
+- **Endpoints principales:**
+  - `/auth/register` — Registro de usuario
+  - `/auth/login` — Login
+  - `/restaurants/search` — Búsqueda de restaurantes
+  - `/restaurants/history` — Historial de búsquedas
 
-# ejecutar pruebas unitarias con modo observador (útil durante desarrollo)
-$ yarn test:watch
+---
 
-# ejecutar pruebas unitarias con cobertura
-$ yarn test:cov
-```
+## Notas y Buenas Prácticas
 
-Para ejecutar las pruebas end-to-end:
+- **Inglés como estándar:**  
+  Todo el código está en inglés para alinearse con las mejores prácticas internacionales y facilitar la colaboración global.
+- **Comentarios útiles:**  
+  Los comentarios explican únicamente la lógica relevante, evitando redundancia y mejorando la legibilidad.
+- **Dockerización:**  
+  El uso de Docker y Docker Compose permite que cualquier persona pueda levantar el entorno completo con un solo comando, sin preocuparse por dependencias locales o versiones de Node/PostgreSQL.
+- **Seguridad:**  
+  Las variables sensibles (como JWT_SECRET y API_KEY) nunca se exponen en el código fuente y deben ser gestionadas mediante el archivo `.env`.
 
-```bash
-# ejecutar pruebas e2e
-$ yarn test:e2e
-```
+---
 
-### Estructura de las pruebas
-
-- Las pruebas unitarias se encuentran en archivos `.spec.ts` junto al código que prueban.
-- Las pruebas e2e están en la carpeta `/test`.
-
-### Cobertura de pruebas
-
-Las pruebas implementadas cubren:
-
-- **AuthService**: Registro de usuarios, login y logout.
-- **TransactionService**: Búsqueda de restaurantes y consulta de historial.
-- **Controladores**: Validación de parámetros y manejo de respuestas.
-- **Flujos E2E**: Registro, login, búsqueda de restaurantes y consulta de historial.
-
-## API Endpoints
-
-La documentación detallada de la API está disponible en Swagger en la ruta `/api/docs` cuando el servidor está en ejecución.
-
-## Licencia
-
-Este proyecto está bajo licencia [MIT](LICENSE).
+¿Dudas, sugerencias o feedback? ¡No dudes en abrir un issue o contactarme! Muchas gracias por la oportunidad!

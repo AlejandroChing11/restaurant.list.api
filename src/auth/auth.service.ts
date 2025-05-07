@@ -44,7 +44,7 @@ export class AuthService {
       })
 
       if (userExists) {
-        throw new BadRequestException('User already exists'); //TODO: create custom exception
+        throw new BadRequestException('User already exists');
       }
 
       // Creamos el usuario con la contraseña hasheada
