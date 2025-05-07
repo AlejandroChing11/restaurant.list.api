@@ -75,10 +75,10 @@ cd restaurant.list.api
 Crea un archivo `.env` en la raíz del proyecto con el siguiente contenido:
 
 ```env
-DB_NAME=restaurantapi
+DB_NAME=restaurant_db
 DB_PASSWORD=postgres
 JWT_SECRET=your_jwt_secret
-API_KEY=your_geoapify_api_key (En archivo de documentacion esta la api key utilizada)
+API_KEY=your_geoapify_api_key (En archivo de documentacion adjunto al correo esta la api key utilizada)
 ```
 
 > **Nota:** Puedes solicitar una API Key gratuita en [Geoapify](https://www.geoapify.com/).

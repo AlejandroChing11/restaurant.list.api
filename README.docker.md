@@ -10,7 +10,7 @@
 
 ```
 # Database
-DB_NAME=restaurantapi
+DB_NAME=restaurant_db
 DB_PASSWORD=postgres
 
 # API
