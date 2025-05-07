@@ -19,7 +19,6 @@
 - [Pruebas Automatizadas](#pruebas-automatizadas)
 - [Documentación de la API](#documentación-de-la-api)
 - [Notas y Buenas Prácticas](#notas-y-buenas-prácticas)
-- [Licencia](#licencia)
 
 ---
 
